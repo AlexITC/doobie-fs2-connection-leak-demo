@@ -46,6 +46,7 @@ class H2SampleSpec extends AnyWordSpec {
           val dbStream = sql"select 1000"
             .query[Int]
             .stream
+            .drop(1)
             .transact(xa)
             .onFinalize(IO(logger.info("Db connection returned to the pool")))
 
@@ -65,7 +66,7 @@ class H2SampleSpec extends AnyWordSpec {
       transactor
         .use { xa =>
           val dbStream =
-            sql"select 1000".query[Int].stream.transact(xa)
+            sql"select 1000".query[Int].stream.drop(1).transact(xa)
 
           logger.warn(
             "dbStream picks a connection from the pool which is returned to the pool until the 2nd stream finishes"
