@@ -37,7 +37,8 @@ lazy val server = (project in file("server"))
       "org.tpolecat" %% "doobie-specs2" % doobieVersion
     ),
     libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.10",
-    libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.10" % "test"
+    libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.10" % "test",
+    libraryDependencies += "com.h2database" % "h2" % "2.1.210" % Test
   )
 
 lazy val root = (project in file("."))
